@@ -2,6 +2,7 @@ package kakaopaysec2;
 
 import java.util.Scanner;
 
+//1. ¹è¿­Å½»ö
 public class ArrayNavigation {
 
 	
