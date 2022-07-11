@@ -16,16 +16,13 @@ public class ArrayNavigation {
 		int [][] array=null;
 		
 		//변수 입력(가로열)
-		System.out.println("가로 열");
-		System.out.print(">");
+		System.out.print(">가로 열\t\t\t : ");
 		x = Integer.parseInt(scanner.next());
 		//변수 입력(세로열)
-		System.out.println("세로 열");
-		System.out.print(">");
+		System.out.print(">세로 열\t\t\t : ");
 		y = Integer.parseInt(scanner.next());
 		//배열 데이터 입력
-		System.out.println("배열 데이터 (,) 로 구분");
-		System.out.print(">");
+		System.out.print(">배열 데이터 (,) 로 구분 \t : ");
 		arrayData = scanner.next().split(",");
 		array = new int[x][y];
 		for(int i=0;i<x;i++) {
@@ -34,10 +31,16 @@ public class ArrayNavigation {
 			}
 		}
 		
+		System.out.println(">정답");
+		
 		//배열탐색 및 출력
 		Coordinate coordinate = new Coordinate(0, 0, true,false);
 		while(!coordinate.isEnd) {
-			System.out.print(">"+array[coordinate.getX()][coordinate.getY()]);
+			if(!(coordinate.getX()==0 && coordinate.getY()==0)) {
+				System.out.print(",");	
+			}
+			System.out.print(array[coordinate.getX()][coordinate.getY()]);
+			
 			coordinate = searchRoad(x,y,coordinate);
 		}
 	}

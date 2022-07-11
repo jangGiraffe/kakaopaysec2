@@ -1,7 +1,9 @@
 package kakaopaysec2;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 //3. 마지막 남는 자리
@@ -34,8 +36,35 @@ public class LastSeat {
 				if(tmp==0) tmp=peopleNum-i;			
 				lastSeat= lastSeat.substring(tmp,lastSeat.length())+lastSeat.substring(0,tmp-1);
 			}
+		}else {
+			List<String> seatList = new LinkedList<String>();
+			int index=0;
+			for(int i=0;i<peopleNum;i++) {
+				seatList.add(i+"");
+			}
+			ListIterator<String> iterator = seatList.listIterator();
+			//마지막 남는 자리 찾기
+			for(int i=0;i<peopleNum-1;i++) {
+				for(int j=0;j<moveD;j++) {
+					if(iterator.hasNext()) {
+						index = iterator.nextIndex();
+						iterator.next();
+					}
+					else {
+						iterator = seatList.listIterator();
+						index = iterator.nextIndex();
+						iterator.next();
+					}
+				}
+				lastSeat = (String) seatList.get(index);
+				seatList.remove(index);
+				iterator = seatList.listIterator(index);
+			}
+			tmp = Integer.parseInt(seatList.get(0))+1;
+			lastSeat = tmp+"";
 		}
-		System.out.println("마지막 남는 자리는 " + lastSeat + "입니다.");
+		//결과 출력
+		System.out.println("> 출력  \t\t:" + lastSeat);
 		
 	}
 }
